@@ -1,6 +1,18 @@
 import { loadHeaderFooter } from './utils.mjs';
-import { searchByMealName, searchByNameAndCategory, searchByNameAndArea, searchByIngredient, populateCategoryOptions, populateAreaOptions } from './search.mjs';
-import { renderRecipeList, resetCategoryDropdown, resetAreaDropdown } from './recipeList.mjs';
+import {
+  searchByMealName,
+  searchByNameAndCategory,
+  searchByNameAndArea,
+  searchByIngredient,
+  populateCategoryOptions,
+  populateAreaOptions,
+} from './search.mjs';
+import {
+  renderRecipeList,
+  resetCategoryDropdown,
+  resetAreaDropdown,
+  resetTypeDropdown,
+} from './recipeList.mjs';
 import { fetchRandomRecipe, renderRandomRecipe } from './recipeShow.mjs';
 import { renderFavourites } from './favourites.mjs';
 
@@ -9,17 +21,17 @@ populateCategoryOptions();
 populateAreaOptions();
 
 const suggestion = await fetchRandomRecipe();
-const suggestionElement = document.getElementById("recipe-suggestion");
-const redoButton = document.getElementById("suggestion-button");
+const suggestionElement = document.getElementById('recipe-suggestion');
+const redoButton = document.getElementById('suggestion-button');
 
 renderRandomRecipe(suggestionElement, suggestion);
 
-redoButton.addEventListener("click", async () => {
+redoButton.addEventListener('click', async () => {
   const newSuggestion = await fetchRandomRecipe();
   renderRandomRecipe(suggestionElement, newSuggestion);
 });
 
-const searchForm = document.getElementById("search-form");
+const searchForm = document.getElementById('search-form');
 
 async function handleSearch(event) {
   event.preventDefault();
@@ -67,7 +79,7 @@ searchForm.addEventListener('keydown', function (event) {
   }
 });
 
-searchForm.addEventListener("submit", handleSearch);
+searchForm.addEventListener('submit', handleSearch);
 
 const cToggle = document.getElementById('categoryDropdownButton');
 const cMenu = document.getElementById('categoryDropdownMenu');
@@ -132,6 +144,6 @@ document.addEventListener('click', (e) => {
   }
 });
 
-const favouritesElement = document.getElementById("favourites");
+const favouritesElement = document.getElementById('favourites');
 
 renderFavourites(favouritesElement);

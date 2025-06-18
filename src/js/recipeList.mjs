@@ -52,3 +52,12 @@ export function resetAreaDropdown() {
   toggle.dataset.value = "";
   menu.style.display = 'none';
 }
+
+export function resetTypeDropdown() {
+  const toggle = document.getElementById('typeDropdownButton');
+  const menu = document.getElementById('typeDropdownMenu');
+
+  toggle.textContent = "Type";
+  toggle.dataset.value = "";
+  menu.style.display = 'none';
+}
