@@ -20,16 +20,20 @@ loadHeaderFooter();
 populateCategoryOptions();
 populateAreaOptions();
 
-const suggestion = await fetchRandomRecipe();
-const suggestionElement = document.getElementById('recipe-suggestion');
-const redoButton = document.getElementById('suggestion-button');
+async function loadSuggestion() {
+  const suggestion = await fetchRandomRecipe();
+  const suggestionElement = document.getElementById('recipe-suggestion');
+  const redoButton = document.getElementById('suggestion-button');
 
-renderRandomRecipe(suggestionElement, suggestion);
+  renderRandomRecipe(suggestionElement, suggestion);
 
-redoButton.addEventListener('click', async () => {
-  const newSuggestion = await fetchRandomRecipe();
-  renderRandomRecipe(suggestionElement, newSuggestion);
-});
+  redoButton.addEventListener('click', async () => {
+    const newSuggestion = await fetchRandomRecipe();
+    renderRandomRecipe(suggestionElement, newSuggestion);
+  });
+}
+
+loadSuggestion();
 
 const searchForm = document.getElementById('search-form');
 
